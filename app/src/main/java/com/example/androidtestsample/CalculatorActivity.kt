@@ -29,22 +29,23 @@ class CalculatorActivity : AppCompatActivity() {
         with(binding) {
             numList.forEach { numButton ->
                 numButton.setOnClickListener {
-                    input.text = numButton.text.toString()
+                    addInput(numButton.text.toString())
                 }
             }
 
             plus.setOnClickListener {
-                // TODO
+                addInput(plus.text.toString())
             }
             minus.setOnClickListener {
-                // TODO
+                addInput(minus.text.toString())
             }
             times.setOnClickListener {
-                // TODO
+                addInput(times.text.toString())
             }
             divide.setOnClickListener {
-                // TODO
+                addInput(divide.text.toString())
             }
+
             equals.setOnClickListener {
                 // TODO
             }
@@ -52,5 +53,9 @@ class CalculatorActivity : AppCompatActivity() {
                 // TODO
             }
         }
+    }
+
+    private fun addInput(text: String) {
+        binding.input.text = "${binding.input.text}${text}"
     }
 }

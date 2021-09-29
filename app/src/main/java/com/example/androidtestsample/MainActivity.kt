@@ -1,5 +1,6 @@
 package com.example.androidtestsample
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtestsample.databinding.ActivityMainBinding
@@ -26,6 +27,11 @@ class MainActivity : AppCompatActivity() {
         binding.down.setOnClickListener {
             counter.decrease()
             fetchCounterText()
+        }
+
+        // 3. 계산기 액티비티 띄우기
+        binding.calculator.setOnClickListener {
+            startActivity(Intent(this, CalculatorActivity::class.java))
         }
     }
 

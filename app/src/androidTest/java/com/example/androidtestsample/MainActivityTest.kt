@@ -34,4 +34,39 @@ internal class MainActivityTest {
         onView(withId(R.id.counter))
             .check(matches(withText("0")))
     }
+
+    @Test
+    fun increase_counter_up_button_clicked() {
+        // when
+        onView(withId(R.id.up))
+            .perform(click())
+
+        // then
+        onView(withId(R.id.counter))
+            .check(matches(withText("1")))
+    }
+
+    @Test
+    fun decrease_counter_down_button_clicked() {
+        // when
+        onView(withId(R.id.down))
+            .perform(click())
+
+        // then
+        onView(withId(R.id.counter))
+            .check(matches(withText("-1")))
+    }
+
+    @Test
+    fun increase_three_counter_up_button_three_clicked() {
+        // when
+        repeat(3) {
+            onView(withId(R.id.up))
+                .perform(click())
+        }
+
+        // then
+        onView(withId(R.id.counter))
+            .check(matches(withText("3")))
+    }
 }

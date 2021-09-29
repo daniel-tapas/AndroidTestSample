@@ -47,12 +47,16 @@ class CalculatorActivity : AppCompatActivity() {
             }
 
             equals.setOnClickListener {
-                // TODO
+                removeLastIndexInput()
             }
             remove.setOnClickListener {
                 // TODO
             }
         }
+    }
+
+    private fun removeLastIndexInput() {
+        binding.input.text = "${binding.input.text.substring(0, binding.input.text.length - 1)}"
     }
 
     private fun addInput(text: String) {

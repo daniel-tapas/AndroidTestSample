@@ -1,4 +1,4 @@
-package com.example.androidtestsample
+package com.example.androidtestsample.domain
 
 import java.util.concurrent.atomic.AtomicInteger
 

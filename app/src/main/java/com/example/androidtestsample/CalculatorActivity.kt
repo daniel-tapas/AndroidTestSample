@@ -11,6 +11,7 @@ class CalculatorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalculatorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val numList = listOf(
             binding.num0,
@@ -28,8 +29,7 @@ class CalculatorActivity : AppCompatActivity() {
         with(binding) {
             numList.forEach { numButton ->
                 numButton.setOnClickListener {
-                    // TODO
-                    numButton.text
+                    input.text = numButton.text.toString()
                 }
             }
 

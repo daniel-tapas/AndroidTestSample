@@ -3,10 +3,14 @@ package com.example.androidtestsample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtestsample.databinding.ActivityCalculatorBinding
+import com.example.androidtestsample.domain.Calculator
+import com.example.androidtestsample.domain.Operator
 
 class CalculatorActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCalculatorBinding
+
+    val calculator = Calculator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,32 +38,46 @@ class CalculatorActivity : AppCompatActivity() {
             }
 
             plus.setOnClickListener {
-                addInput(plus.text.toString())
+                addOperator(Operator.PLUS)
             }
             minus.setOnClickListener {
-                addInput(minus.text.toString())
+                addOperator(Operator.MINUS)
             }
             times.setOnClickListener {
-                addInput(times.text.toString())
+                addOperator(Operator.TIMES)
             }
             divide.setOnClickListener {
-                addInput(divide.text.toString())
+                addOperator(Operator.DIVIDE)
             }
 
             equals.setOnClickListener {
-                removeLastIndexInput()
+                input.text = calculator.calculate(input.text.toString()).toString()
             }
             remove.setOnClickListener {
-                // TODO
+                removeLastIndexInput()
             }
         }
     }
 
     private fun removeLastIndexInput() {
-        binding.input.text = "${binding.input.text.substring(0, binding.input.text.length - 1)}"
+        binding.input.text = "${
+            binding.input.text.substring(0, binding.input.text.length - 1)
+                .trim()
+        }"
     }
 
     private fun addInput(text: String) {
+        val input = binding.input.text.toString()
+        if (input.isNotBlank()) {
+            if (Operator.valueOf(code = input.last().toString()) != null) {
+                binding.input.text = "$input "
+            }
+        }
         binding.input.text = "${binding.input.text}${text}"
+    }
+
+    private fun addOperator(operator: Operator) {
+        if (binding.input.text.isBlank()) return
+        addInput(" ${operator.code}")
     }
 }

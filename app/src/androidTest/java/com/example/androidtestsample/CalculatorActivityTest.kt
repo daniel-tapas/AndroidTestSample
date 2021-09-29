@@ -48,4 +48,42 @@ internal class CalculatorActivityTest {
         onView(withId(R.id.input))
             .check(matches(withText("10")))
     }
+
+    @Test
+    fun calculate() {
+        onView(withText("2"))
+            .perform(click())
+
+        onView(withText("+"))
+            .perform(click())
+
+        onView(withText("5"))
+            .perform(click())
+
+        onView(withText("="))
+            .perform(click())
+
+        onView(withId(R.id.input))
+            .check(matches(withText("7")))
+    }
+
+    @Test
+    fun remove() {
+        onView(withText("2"))
+            .perform(click())
+
+        onView(withText("+"))
+            .perform(click())
+
+        onView(withText("5"))
+            .perform(click())
+
+        onView(withText("지우기"))
+            .perform(click())
+        onView(withText("지우기"))
+            .perform(click())
+
+        onView(withId(R.id.input))
+            .check(matches(withText("2")))
+    }
 }

@@ -1,16 +1,17 @@
 package com.example.androidtestsample
 
-class Counter {
+import java.util.concurrent.atomic.AtomicInteger
 
-    private var _count = 0
+class Counter {
+    private var _count = AtomicInteger(0)
     val count
-        get() = _count
+        get() = _count.get()
 
     fun increase() {
-        _count++
+        _count.incrementAndGet()
     }
 
     fun decrease() {
-        _count--
+        _count.decrementAndGet()
     }
 }

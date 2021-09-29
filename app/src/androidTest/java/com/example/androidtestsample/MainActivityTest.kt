@@ -3,6 +3,9 @@ package com.example.androidtestsample
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -68,5 +71,16 @@ internal class MainActivityTest {
         // then
         onView(withId(R.id.counter))
             .check(matches(withText("3")))
+    }
+
+    @Test
+    fun open_calculator_activity_calculator_button_clicked() {
+        Intents.init()
+
+        onView(withId(R.id.calculator))
+            .perform(click())
+
+        intended(hasComponent(CalculatorActivity::class.qualifiedName))
+        Intents.release()
     }
 }

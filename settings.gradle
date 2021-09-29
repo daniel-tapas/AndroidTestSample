@@ -10,3 +10,4 @@ rootProject.name = "AndroidTestSample"
 include ':app'
 include ':model'
 include ':domain'
+include ':data'

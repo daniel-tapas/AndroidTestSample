@@ -1,26 +1,35 @@
 package com.example.androidtestsample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtestsample.databinding.ActivityMainBinding
 
 // 1. UP 버튼을 누르면 1이 증가한다.
 // 2. DOWN 버튼을 누르면 1이 감소한다.
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    private val counter = Counter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        fetchCounterText()
+
         binding.up.setOnClickListener {
-            val count = binding.counter.text.toString().toInt()
-            binding.counter.text = "${count + 1}"
+            counter.increase()
+            fetchCounterText()
         }
 
         binding.down.setOnClickListener {
-            val count = binding.counter.text.toString().toInt()
-            binding.counter.text = "${count - 1}"
+            counter.decrease()
+            fetchCounterText()
         }
+    }
+
+    private fun fetchCounterText() {
+        binding.counter.text = counter.count.toString()
     }
 }

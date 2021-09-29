@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AndroidTestSample"
 include ':app'
+include ':model'

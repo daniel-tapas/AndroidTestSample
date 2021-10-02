@@ -1,10 +1,11 @@
-package com.example.androidtestsample
+package com.example.androidtestsample.ui.main
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtestsample.databinding.ActivityMainBinding
 import com.example.androidtestsample.domain.Counter
+import com.example.androidtestsample.ui.calculator.CalculatorActivity
 
 // 1. UP 버튼을 누르면 1이 증가한다.
 // 2. DOWN 버튼을 누르면 1이 감소한다.

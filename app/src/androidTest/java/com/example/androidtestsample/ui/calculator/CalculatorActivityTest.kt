@@ -30,11 +30,14 @@ internal class CalculatorActivityTest {
     @ParameterizedTest
     @ValueSource(strings = ["+", "-", "*", "/"])
     fun change_input_to_text_of_number_button_when_operator_clicked(operatorText: String) {
+        Espresso.onView(ViewMatchers.withText("1"))
+            .perform(ViewActions.click())
+
         Espresso.onView(ViewMatchers.withText(operatorText))
             .perform(ViewActions.click())
 
         Espresso.onView(ViewMatchers.withId(R.id.input))
-            .check(ViewAssertions.matches(ViewMatchers.withText(operatorText)))
+            .check(ViewAssertions.matches(ViewMatchers.withText("1 $operatorText")))
     }
 
     @Test

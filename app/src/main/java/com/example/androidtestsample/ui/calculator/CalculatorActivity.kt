@@ -3,19 +3,20 @@ package com.example.androidtestsample.ui.calculator
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.androidtestsample.databinding.ActivityCalculatorBinding
-import com.example.androidtestsample.domain.Calculator
 import com.example.androidtestsample.domain.Operator
 
-class CalculatorActivity : AppCompatActivity() {
+class CalculatorActivity : AppCompatActivity(), CalculatorContract.View {
 
     private lateinit var binding: ActivityCalculatorBinding
 
-    val calculator = Calculator()
+    private lateinit var presenter: CalculatorContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        presenter = CalculatorPresenter(this)
 
         val numList = listOf(
             binding.num0,
@@ -31,53 +32,22 @@ class CalculatorActivity : AppCompatActivity() {
         )
 
         with(binding) {
-            numList.forEach { numButton ->
+            numList.forEachIndexed { index, numButton ->
                 numButton.setOnClickListener {
-                    addInput(numButton.text.toString())
+                    presenter.addNumber(index)
                 }
             }
 
-            plus.setOnClickListener {
-                addOperator(Operator.PLUS)
-            }
-            minus.setOnClickListener {
-                addOperator(Operator.MINUS)
-            }
-            times.setOnClickListener {
-                addOperator(Operator.TIMES)
-            }
-            divide.setOnClickListener {
-                addOperator(Operator.DIVIDE)
-            }
-
-            equals.setOnClickListener {
-                input.text = calculator.calculate(input.text.toString()).toString()
-            }
-            remove.setOnClickListener {
-                removeLastIndexInput()
-            }
+            plus.setOnClickListener { presenter.addOperator(Operator.PLUS) }
+            minus.setOnClickListener { presenter.addOperator(Operator.MINUS) }
+            times.setOnClickListener { presenter.addOperator(Operator.TIMES) }
+            divide.setOnClickListener { presenter.addOperator(Operator.DIVIDE) }
+            equals.setOnClickListener { presenter.calculate() }
+            remove.setOnClickListener { presenter.removeLastInput() }
         }
     }
 
-    private fun removeLastIndexInput() {
-        binding.input.text = "${
-            binding.input.text.substring(0, binding.input.text.length - 1)
-                .trim()
-        }"
-    }
-
-    private fun addInput(text: String) {
-        val input = binding.input.text.toString()
-        if (input.isNotBlank()) {
-            if (Operator.valueOf(code = input.last().toString()) != null) {
-                binding.input.text = "$input "
-            }
-        }
-        binding.input.text = "${binding.input.text}${text}"
-    }
-
-    private fun addOperator(operator: Operator) {
-        if (binding.input.text.isBlank()) return
-        addInput(" ${operator.code}")
+    override fun updateInput(input: String) {
+        binding.input.text = input
     }
 }

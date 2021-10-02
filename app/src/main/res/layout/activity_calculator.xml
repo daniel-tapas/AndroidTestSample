@@ -1,205 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:padding="16dp">
+	xmlns:tools="http://schemas.android.com/tools">
 
-	<TextView
-		android:id="@+id/input"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="50dp"
-		android:textSize="50sp"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		tools:text="1 + 1 = 2" />
+	<data>
+		<import type="com.example.androidtestsample.domain.Operator" />
+		<variable
+			name="vm"
+			type="com.example.androidtestsample.ui.calculator.CalculatorViewModel" />
+	</data>
 
-	<View
-		android:id="@+id/v_divider"
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="2dp"
-		android:background="#ededed"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/input" />
+		android:layout_height="match_parent"
+		android:padding="16dp">
 
-	<GridLayout
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		android:columnCount="4"
-		android:rowCount="4"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/v_divider">
-
-		<Button
-			android:id="@+id/num_1"
+		<TextView
+			android:id="@+id/input"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="1"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			android:layout_marginTop="50dp"
+			android:text="@{vm.input}"
+			android:textSize="50sp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="1 + 1 = 2" />
 
-		<Button
-			android:id="@+id/num_2"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="2"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+		<View
+			android:id="@+id/v_divider"
+			android:layout_width="match_parent"
+			android:layout_height="2dp"
+			android:background="#ededed"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/input" />
 
-		<Button
-			android:id="@+id/num_3"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="3"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+		<GridLayout
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:columnCount="4"
+			android:rowCount="4"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/v_divider">
 
-		<Button
-			android:id="@+id/plus"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:text="+"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="1"
+				android:onClick="@{() -> vm.addNumber(1)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_4"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="4"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="2"
+				android:onClick="@{() -> vm.addNumber(2)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_5"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="5"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="3"
+				android:onClick="@{() -> vm.addNumber(3)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_6"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="6"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/plus"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:text="+"
+				android:onClick="@{() -> vm.addOperator(Operator.PLUS)}"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/minus"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:text="-"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_4"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="4"
+				android:onClick="@{() -> vm.addNumber(4)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_7"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="7"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_5"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="5"
+				android:onClick="@{() -> vm.addNumber(5)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_8"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="8"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_6"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="6"
+				android:onClick="@{() -> vm.addNumber(6)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_9"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="9"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/minus"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:text="-"
+				android:onClick="@{() -> vm.addOperator(Operator.MINUS)}"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/times"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:text="*"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_7"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="7"
+				android:onClick="@{() -> vm.addNumber(7)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/remove"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:text="지우기"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_8"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="8"
+				android:onClick="@{() -> vm.addNumber(8)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/num_0"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:backgroundTint="@color/white"
-			android:text="0"
-			android:textColor="@color/black"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/num_9"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="9"
+				android:onClick="@{() -> vm.addNumber(9)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/equals"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:text="="
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/times"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:text="*"
+				android:onClick="@{() -> vm.addOperator(Operator.TIMES)}"
+				android:textSize="18sp" />
 
-		<Button
-			android:id="@+id/divide"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_rowWeight="1"
-			android:layout_columnWeight="1"
-			android:text="/"
-			android:textSize="18sp" />
+			<Button
+				android:id="@+id/remove"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:text="지우기"
+				android:onClick="@{() -> vm.removeLastInput()}"
+				android:textSize="18sp" />
 
-	</GridLayout>
+			<Button
+				android:id="@+id/num_0"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:backgroundTint="@color/white"
+				android:text="0"
+				android:onClick="@{() -> vm.addNumber(0)}"
+				android:textColor="@color/black"
+				android:textSize="18sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+			<Button
+				android:id="@+id/equals"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:text="="
+				android:onClick="@{() -> vm.calculate()}"
+				android:textSize="18sp" />
+
+			<Button
+				android:id="@+id/divide"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_rowWeight="1"
+				android:layout_columnWeight="1"
+				android:text="/"
+				android:onClick="@{() -> vm.addOperator(Operator.DIVIDE)}"
+				android:textSize="18sp" />
+
+		</GridLayout>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

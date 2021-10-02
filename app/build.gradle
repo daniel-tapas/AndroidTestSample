@@ -85,4 +85,7 @@ dependencies {
     testImplementation "com.google.truth:truth:1.1.3"
 
     testImplementation "org.assertj:assertj-core:3.19.0"
+
+    // mock
+    testImplementation "io.mockk:mockk:1.12.0"
 }

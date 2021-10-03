@@ -157,5 +157,14 @@ object Libs {
         const val junit = "junit:junit:4.12"
         const val robolectric = "org.robolectric:robolectric:4.3"
         const val mockK = "io.mockk:mockk:1.10.0"
+
+        object JUnit5 {
+            const val jupiter = "org.junit.jupiter:junit-jupiter-api:5.8.1"
+            const val params = "org.junit.jupiter:junit-jupiter-params:5.8.1"
+            const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:5.8.1"
+            const val vintageEngine = "org.junit.vintage:junit-vintage-engine:5.8.1"
+        }
+
+        const val truth = "com.google.truth:truth:1.1.3"
     }
 }
